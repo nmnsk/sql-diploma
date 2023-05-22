@@ -7,7 +7,3 @@ class TaskSchema(BaseSchema):
     description: str | None
     included_keywords: list[str] | None
     excluded_keywords: list[str] | None
-
-
-class TaskSolution(EmptyBaseSchema):
-    solution: str

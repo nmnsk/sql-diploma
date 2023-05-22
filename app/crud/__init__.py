@@ -1,4 +1,4 @@
-from . import task
+from . import task, user, solution
 
 
-__all__ = ["task"]
+__all__ = ["task", "user", "solution"]

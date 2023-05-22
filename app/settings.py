@@ -17,7 +17,7 @@ class Settings(BaseSettings):
 
     DB_DEMO_DRIVER: str = "postgresql+asyncpg"
     DB_DEMO_HOST: str = "db_demo"
-    DB_DEMO_PORT: int = 5433
+    DB_DEMO_PORT: int = 5432
     DB_DEMO_USER: str = "postgres"
     DB_DEMO_PASSWORD: str = "qwerty"
     DB_DEMO_DATABASE: str = "demo"

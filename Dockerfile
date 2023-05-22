@@ -1,14 +1,14 @@
 FROM python:3.10
 
-COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+WORKDIR /code
 
 COPY . .
+RUN pip3 install pip-tools
 
-#USER runner
-#WORKDIR /code
+RUN pip3 install --no-cache-dir -r requirements.txt
+
 RUN chmod +x docker-entrypoint.sh
 
 EXPOSE 8000
 
-ENTRYPOINT [ "/docker-entrypoint.sh" ]
+ENTRYPOINT [ "sh", "docker-entrypoint.sh" ]

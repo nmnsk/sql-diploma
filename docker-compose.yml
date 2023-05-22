@@ -1,18 +1,27 @@
 version: "3"
 
+networks:
+  sql-diploma_default:
+    external: true
+
 services:
   app:
     build:
       context: .
       dockerfile: ./Dockerfile
     restart: always
-#    volumes:
-#      - .:/code
+    volumes:
+      - .:/code
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8000:8000"
     depends_on:
-      - db
-      - db_demo
+      db:
+        condition: service_healthy
+#      db_demo:
+#        condition: service_started
+    networks:
+      - sql-diploma_default
     command:
       [ 'start', '8000' ]
 
@@ -27,16 +36,23 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=service
       - POSTGRES_PASSWORD=qwerty
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sql-diploma_default
 
-  db_demo:
-    build:
-      context: .
-      dockerfile: ./demo.dockerfile
-    restart: always
-    expose:
-      - "5432"
-    ports:
-      - "5433:5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=qwerty
+#  db_demo:
+#    build:
+#      context: .
+#      dockerfile: ./demo.dockerfile
+#    restart: always
+#    expose:
+#      - "5432"
+#    ports:
+#      - "5433:5432"
+#    environment:
+#      - POSTGRES_USER=postgres
+#      - POSTGRES_PASSWORD=qwerty

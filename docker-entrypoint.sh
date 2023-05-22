@@ -8,4 +8,7 @@ case "$1" in
         alembic upgrade head
         uvicorn app.server:app --host 0.0.0.0 --port $PORT --reload
     ;;
+    *)
+        exec "$@"
+    ;;
 esac

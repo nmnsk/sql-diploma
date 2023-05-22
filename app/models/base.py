@@ -1,4 +1,3 @@
-from uuid import UUID, uuid4
 import datetime
 
 import sqlalchemy as sa
@@ -11,6 +10,6 @@ def utcnow() -> datetime.datetime:
 
 
 class Base(AsyncAttrs, DeclarativeBase):
-    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
+    id: Mapped[int] = mapped_column(primary_key=True)
     created_at: Mapped[datetime.datetime] = mapped_column(sa.DateTime(timezone=True), default=utcnow)
     updated_at: Mapped[datetime.datetime] = mapped_column(sa.DateTime(timezone=True), default=utcnow, onupdate=utcnow)

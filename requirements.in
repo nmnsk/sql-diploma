@@ -3,3 +3,7 @@ alembic
 psycopg2-binary
 sqlalchemy~=2.0
 asyncpg
+docker
+python-multipart
+python-jose[cryptography]
+passlib

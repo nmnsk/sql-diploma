@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from datetime import datetime, time
-from uuid import UUID
 
 
 class EmptyBaseSchema(BaseModel):
@@ -13,6 +12,6 @@ class EmptyBaseSchema(BaseModel):
 
 
 class BaseSchema(EmptyBaseSchema):
-    id: UUID | None
+    id: int | None
     created_at: datetime | None
     updated_at: datetime | None
