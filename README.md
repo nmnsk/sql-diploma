@@ -21,3 +21,15 @@
 7. Сдавать задания через `/tasks/{task_id}/add_solution` может любой авторизованный пользователь
 8. Первое действие пользователя на сервере происходит относительно долго, так как для него поднимается индивидуальный
 контейнер
+
+### Пример задания для отправки на `/tasks/add_task`
+
+```
+{
+    "name": "test_task",
+    "answer_query": "Select * from bookings.aircrafts order by range desc",
+    "description":"test task",
+    "included_keywords": ["select", "from", "order by", "desc"],
+    "excluded_keywords": ["group by", "delete", "insert", "count", "sum", "case", "when"]
+}
+```
