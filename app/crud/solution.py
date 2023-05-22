@@ -68,8 +68,8 @@ async def validate_solution(db: AsyncSession, task_id: int, task_solution: Solut
     solution.rows_affected = rows
     solution.execution_time = full_time
 
-    if rows > task.rows_affected or full_time * 0.9 > task.execution_time:
-        solution.verdict("Less effective than standard")
+    if rows > task.rows_affected or full_time * 0.7 > task.execution_time:
+        solution.verdict = "Less effective than standard"
         db.add(task)
         await db.commit()
         return "Less effective than standard"
